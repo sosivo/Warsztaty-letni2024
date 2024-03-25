@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PlayerInteractable : MonoBehaviour
 {
-    public abstract void OnInteraction();
+    public abstract void OnInteraction(Player player);
 
-    public abstract void OffInteraction();
+    public abstract void OffInteraction(Player player);
 }

@@ -14,11 +14,19 @@ public class Key : PlayerInteractable
 
     [SerializeField]
     List<ObjectInteraction> _interactions;
-    public override void OnInteraction()
+    Rigidbody2D _rb;
+    private void Start()
     {
+        if(TryGetComponent(out Rigidbody2D rb))
+            _rb = rb;
+    }
+    public override void OnInteraction(Player player)
+    {
+        if (_rb != null)
+            player.PickUp(_rb);
         Debug.Log("On Interaction!");
     }
-    public override void OffInteraction()
+    public override void OffInteraction(Player player)
     {
         Debug.Log("Off Interaction!");
     }

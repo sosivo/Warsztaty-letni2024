@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Rigidbody2D Rb;
+    Rigidbody2D _heldRb;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +42,18 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Interact();
+            if (_heldRb == null)
+                Interact();
+            else
+                DropItem();
+
         }
+
+        CameraMovement();
+    }
+    private void FixedUpdate()
+    {
+        HeldItemPhysics();
     }
 
     void Interact()
@@ -52,8 +63,36 @@ public class Player : MonoBehaviour
         { 
             if(hit.transform.TryGetComponent<PlayerInteractable>(out PlayerInteractable playerInteractable))
             {
-                playerInteractable.OnInteraction();
+                playerInteractable.OnInteraction(this);
             }
         }
+    }
+    void CameraMovement()
+    {
+        const float CAMERA_DYNAMIC = 4f;
+        Vector3 cameraPosition = Camera.main.transform.position;
+        Camera.main.transform.position = (Vector3)Vector2.Lerp((Vector2)cameraPosition, (Vector2)transform.position, Time.deltaTime * CAMERA_DYNAMIC) + cameraPosition.z * Vector3.forward;
+    }
+    public void PickUp(Rigidbody2D pickedRb)
+    {
+        if (_heldRb != null)
+        {
+            if (((Vector2)(_heldRb.transform.position - transform.position)).magnitude < ((Vector2)(pickedRb.transform.position - transform.position)).magnitude)
+                return;
+            DropItem();
+        }
+        _heldRb = pickedRb;
+        _heldRb.simulated = false;
+    }
+    public void DropItem()
+    {
+        _heldRb.simulated = true;
+        _heldRb = null;
+    }
+    public void HeldItemPhysics()
+    {
+        if (_heldRb == null)
+            return;
+        _heldRb.transform.position = transform.position + Vector3.up * 1.5f;
     }
 }
