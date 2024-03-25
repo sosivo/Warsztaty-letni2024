@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
 
         }
 
-        CameraMovement();
+        // CameraMovement();
     }
     private void FixedUpdate()
     {
@@ -61,17 +61,11 @@ public class Player : MonoBehaviour
         RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position, new Vector2(2f, 2f), 0f, Vector2.zero,0f);
         foreach(RaycastHit2D hit in hits)
         { 
-            if(hit.transform.TryGetComponent<PlayerInteractable>(out PlayerInteractable playerInteractable))
+            if(hit.transform.TryGetComponent(out PlayerInteractable playerInteractable))
             {
                 playerInteractable.OnInteraction(this);
             }
         }
-    }
-    void CameraMovement()
-    {
-        const float CAMERA_DYNAMIC = 4f;
-        Vector3 cameraPosition = Camera.main.transform.position;
-        Camera.main.transform.position = (Vector3)Vector2.Lerp((Vector2)cameraPosition, (Vector2)transform.position, Time.deltaTime * CAMERA_DYNAMIC) + cameraPosition.z * Vector3.forward;
     }
     public void PickUp(Rigidbody2D pickedRb)
     {
