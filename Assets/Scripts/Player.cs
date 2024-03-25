@@ -5,21 +5,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    Rigidbody2D _rb;
+    public Rigidbody2D Rb;
     // Start is called before the first frame update
     void Start()
     {
         //Fool proof for the sake of flex xd
-        if (_rb == null)
+        if (Rb == null)
         {
             if (TryGetComponent<Rigidbody2D>(out Rigidbody2D rb))
             {
-                _rb = rb;
+                Rb = rb;
             }
             else
             {
-                _rb = transform.AddComponent<Rigidbody2D>();
+                Rb = transform.AddComponent<Rigidbody2D>();
             }
         }
     }
@@ -38,7 +37,7 @@ public class Player : MonoBehaviour
             desiredVelocity += Vector2.left * movementScalar;
         if (Input.GetKey(KeyCode.D))
             desiredVelocity += Vector2.right * movementScalar;
-        _rb.velocity = desiredVelocity + new Vector2(0f,_rb.velocity.y);
+        Rb.velocity = desiredVelocity + new Vector2(0f,Rb.velocity.y);
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
