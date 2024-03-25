@@ -26,17 +26,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        const float movementScalar = 4f;
-        const float jumpScalar = 8f;
+        const float MOVEMENT_SCALLAR = 4f;
+        const float JUMP_SCALLAR = 8f;
         Vector2 desiredVelocity = Vector2.zero;
 
         //allows MultiJump for testing
         if(Input.GetKeyDown(KeyCode.W))
-            desiredVelocity += Vector2.up * jumpScalar;
+            desiredVelocity += Vector2.up * JUMP_SCALLAR;
         if (Input.GetKey(KeyCode.A))
-            desiredVelocity += Vector2.left * movementScalar;
+            desiredVelocity += Vector2.left * MOVEMENT_SCALLAR;
         if (Input.GetKey(KeyCode.D))
-            desiredVelocity += Vector2.right * movementScalar;
+            desiredVelocity += Vector2.right * MOVEMENT_SCALLAR;
         Rb.velocity = desiredVelocity + new Vector2(0f,Rb.velocity.y);
 
         if(Input.GetKeyDown(KeyCode.Space))
@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
         { 
             if(hit.transform.TryGetComponent<PlayerInteractable>(out PlayerInteractable playerInteractable))
             {
-                playerInteractable.OnInteract();
+                playerInteractable.OnInteraction();
             }
         }
     }

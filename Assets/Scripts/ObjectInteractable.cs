@@ -4,13 +4,7 @@ using UnityEngine;
 
 public abstract class ObjectInteractable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public abstract void Start();
+    public abstract void OnInteraction();
 
-    // Update is called once per frame
-    public abstract void Update();
-
-    public abstract void OnInteract();
-
-    public abstract void OffInteract();
+    public abstract void OffInteraction();
 }

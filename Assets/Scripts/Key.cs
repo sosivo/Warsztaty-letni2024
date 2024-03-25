@@ -4,23 +4,50 @@ using UnityEngine;
 
 public class Key : PlayerInteractable
 {
-    // Start is called before the first frame update
-    public override void Start()
+    [System.Serializable]
+    struct ObjectInteraction
     {
-        
+        public ObjectInteractable KeyActivatedObject;
+        public bool OnInteraction;
+        public bool OffInteraction;
     }
 
-    // Update is called once per frame
-    public override void Update()
-    {
-        
-    }
-    public override void OnInteract()
+    [SerializeField]
+    List<ObjectInteraction> _interactions;
+    public override void OnInteraction()
     {
         Debug.Log("On Interaction!");
     }
-    public override void OffInteract()
+    public override void OffInteraction()
     {
         Debug.Log("Off Interaction!");
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.transform.TryGetComponent(out ObjectInteractable foundInteractable))
+        {
+            foreach(ObjectInteraction interaction in _interactions)
+            {
+                if (interaction.KeyActivatedObject != foundInteractable)
+                    continue;
+                if (interaction.OnInteraction)
+                {
+                    foundInteractable.OnInteraction();
+                }
+                if(interaction.OffInteraction)
+                { 
+                    foundInteractable.OffInteraction();
+                }            
+            }
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        foreach (ObjectInteraction interaction in _interactions)
+        {
+            Gizmos.color = Color.red;
+            if (interaction.KeyActivatedObject != null)
+                Gizmos.DrawLine(transform.position, interaction.KeyActivatedObject.transform.position);
+        }
     }
 }

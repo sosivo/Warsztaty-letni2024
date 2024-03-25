@@ -180,7 +180,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 93557037b2ef2ec4aba66e7335a3e8b0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -203,3 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae23e68fb9a730249ae8db0c9f756de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactions:
+  - KeyActivatedObject: {fileID: 0}
+    OnInteraction: 1
+    OffInteraction: 0
