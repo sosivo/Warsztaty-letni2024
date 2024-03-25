@@ -744,6 +744,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6923072086745683804, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8385042719940875159, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -857,6 +861,10 @@ PrefabInstance:
     - target: {fileID: 3285629763471464182, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
       propertyPath: m_Name
       value: Moving Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977304016658682209, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
+      propertyPath: _moveSpeed
+      value: 56423770
       objectReference: {fileID: 0}
     - target: {fileID: 7353535473571558948, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
       propertyPath: m_LocalPosition.x
