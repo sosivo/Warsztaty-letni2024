@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     private readonly RaycastHit2D[] groundHitCheckResults = new RaycastHit2D[10];
 
-    [SerializeField] private float movementForce = 15000f;
+    [SerializeField] private float movementForce = 10000f;
     [SerializeField] private float jumpForce = 700f;
 
     [SerializeField] private float horizontalVelocityLimit = 5f;
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpBuffer = 0.2f;
     private bool hasJumped;
     private float lastJumpTime;
+
+    [SerializeField] private float airMovementMultiplier = 0.6f;
     
     // Start is called before the first frame update
     private void Start()
@@ -63,11 +65,11 @@ public class Player : MonoBehaviour
         // CameraMovement();
     }
 
-    private void PerformMovement()
+    private void PerformMovement(bool isGrounded)
     {
         if (CanJump())
         {
-            if (IsGrounded())
+            if (isGrounded)
             {
                 Rb.velocity = new Vector2(Rb.velocity.x, 0);
                 Rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -85,17 +87,22 @@ public class Player : MonoBehaviour
             _ => 1
         };
 
+        var finalMovementForce = isGrounded ? movementForce : movementForce * airMovementMultiplier;
+
         if (Input.GetKey(KeyCode.A))
-            Rb.AddForce(Vector2.left * movementForce, ForceMode2D.Force);
+            Rb.AddForce(Vector2.left * finalMovementForce, ForceMode2D.Force);
         if (Input.GetKey(KeyCode.D))
-            Rb.AddForce(Vector2.right * movementForce, ForceMode2D.Force);
+            Rb.AddForce(Vector2.right * finalMovementForce, ForceMode2D.Force);
     }
 
     private void FixedUpdate()
     {
-        PerformMovement();
+        bool isGrounded = IsGrounded();
+        PerformMovement(isGrounded);
+
+        var finalDrag = Mathf.Atan(Mathf.Clamp01((isGrounded ? horizontalDrag : horizontalDrag / airMovementMultiplier) * Time.fixedDeltaTime));
         
-        Rb.velocity = new Vector2(Mathf.Clamp(Rb.velocity.x, -horizontalVelocityLimit, horizontalVelocityLimit) * horizontalDrag * Time.fixedDeltaTime,
+        Rb.velocity = new Vector2(Mathf.Clamp(Rb.velocity.x, -horizontalVelocityLimit, horizontalVelocityLimit) * finalDrag,
             Rb.velocity.y);
         
         HeldItemPhysics();
