@@ -341,7 +341,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -405,17 +405,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6923072086745683804, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
+      propertyPath: m_Mass
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 8385042719940875159, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8818858610074850173, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.91
       objectReference: {fileID: 0}
     - target: {fileID: 8818858610074850173, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.13
       objectReference: {fileID: 0}
     - target: {fileID: 8818858610074850173, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -465,22 +469,6 @@ PrefabInstance:
     - target: {fileID: 3285629763471464182, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
       propertyPath: m_Name
       value: Moving Platform
-      objectReference: {fileID: 0}
-    - target: {fileID: 6977304016658682209, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
-      propertyPath: _moveSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7219499297243357796, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7219499297243357796, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7219499297243357796, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
-      propertyPath: m_GravityScale
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7353535473571558948, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
       propertyPath: m_LocalPosition.x

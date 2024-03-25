@@ -7,6 +7,8 @@ public class MovingObject : ObjectInteractable
     [SerializeField]
     float _moveSpeed = 1f;
     [SerializeField]
+    float _acceleration = 10f;
+    [SerializeField]
     Rigidbody2D _rb;
     Vector2 _origin;
     public Vector2 Destination;
@@ -23,7 +25,6 @@ public class MovingObject : ObjectInteractable
         float closeToZero = _moveSpeed * Time.fixedDeltaTime > Physics2D.gravity.magnitude * Time.fixedDeltaTime * Time.fixedDeltaTime ?
             _moveSpeed * Time.fixedDeltaTime : Physics2D.gravity.magnitude * Time.fixedDeltaTime * Time.fixedDeltaTime;
         closeToZero += 0.05f;
-        const float acceleration = 10f;
         Vector2 desiredRelocation = Vector2.zero;
 
         if (_originFlag)
@@ -37,11 +38,11 @@ public class MovingObject : ObjectInteractable
 
         if (desiredRelocation.magnitude > closeToZero)
         {
-            _rb.velocity = Vector2.Lerp(_rb.velocity, desiredRelocation.normalized * _moveSpeed,acceleration*Time.fixedDeltaTime);
+            _rb.velocity = Vector2.Lerp(_rb.velocity, desiredRelocation.normalized * _moveSpeed,_acceleration*Time.fixedDeltaTime);
         }
         else
         {
-            _rb.velocity = Vector2.Lerp(_rb.velocity, desiredRelocation, acceleration * Time.deltaTime);
+            _rb.velocity = Vector2.Lerp(_rb.velocity, desiredRelocation, _acceleration * Time.deltaTime);
             //transform.position = (Vector2)transform.position + desiredRelocation;
         }
     }
