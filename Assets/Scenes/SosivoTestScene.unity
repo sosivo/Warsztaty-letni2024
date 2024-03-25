@@ -596,6 +596,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1743117756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743117752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b910f95c3c309c4380f2e38e702df00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <TrackedObject>k__BackingField: {fileID: 1905511726}
+  <CameraDynamic>k__BackingField: 4
+--- !u!4 &1905511726 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8818858610074850173, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
+  m_PrefabInstance: {fileID: 959102697219959915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1941822975
 GameObject:
   m_ObjectHideFlags: 0
