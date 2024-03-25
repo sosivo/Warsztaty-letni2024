@@ -76,7 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rb: {fileID: 0}
   groundCheckDistance: 0.1
-  movementSpeed: 1000
+  movementForce: 15000
   jumpForce: 700
   horizontalVelocityLimit: 5
   horizontalDrag: 40

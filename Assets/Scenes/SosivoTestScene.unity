@@ -768,6 +768,10 @@ PrefabInstance:
       propertyPath: m_Interpolate
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7629358899835594949, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
+      propertyPath: movementSpeed
+      value: 15000
+      objectReference: {fileID: 0}
     - target: {fileID: 8385042719940875159, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
       propertyPath: m_Name
       value: Player

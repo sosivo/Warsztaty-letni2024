@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
 
     private readonly RaycastHit2D[] groundHitCheckResults = new RaycastHit2D[10];
 
-    [SerializeField] private float movementSpeed = 4f;
-    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float movementForce = 15000f;
+    [SerializeField] private float jumpForce = 700f;
 
     [SerializeField] private float horizontalVelocityLimit = 5f;
     [SerializeField] private float horizontalDrag = 40f;
@@ -50,7 +50,21 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
             lastJumpTime = Time.time;
-            
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (_heldRb == null)
+                Interact();
+            else
+                DropItem();
+
+        }
+
+        // CameraMovement();
+    }
+
+    private void PerformMovement()
+    {
         if (CanJump())
         {
             if (IsGrounded())
@@ -72,23 +86,15 @@ public class Player : MonoBehaviour
         };
 
         if (Input.GetKey(KeyCode.A))
-            Rb.AddForce(Vector2.left * movementSpeed, ForceMode2D.Force);
+            Rb.AddForce(Vector2.left * movementForce, ForceMode2D.Force);
         if (Input.GetKey(KeyCode.D))
-            Rb.AddForce(Vector2.right * movementSpeed, ForceMode2D.Force);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (_heldRb == null)
-                Interact();
-            else
-                DropItem();
-
-        }
-
-        // CameraMovement();
+            Rb.AddForce(Vector2.right * movementForce, ForceMode2D.Force);
     }
+
     private void FixedUpdate()
     {
+        PerformMovement();
+        
         Rb.velocity = new Vector2(Mathf.Clamp(Rb.velocity.x, -horizontalVelocityLimit, horizontalVelocityLimit) * horizontalDrag * Time.fixedDeltaTime,
             Rb.velocity.y);
         
