@@ -82,11 +82,14 @@ public class Player : MonoBehaviour
             DropItem();
         }
         _heldRb = pickedRb;
+        Rb.mass += _heldRb.mass;
         _heldRb.simulated = false;
     }
     public void DropItem()
     {
+        Rb.mass -= _heldRb.mass;
         _heldRb.simulated = true;
+        _heldRb.velocity = Vector3.zero;
         _heldRb = null;
     }
     public void HeldItemPhysics()
