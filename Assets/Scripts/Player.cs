@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D Rb;
     private Rigidbody2D _heldRb;
 
-    private Collider2D col;
+    [SerializeField] private Collider2D groundCheckCollider;
     [SerializeField] private float groundCheckDistance = 0.1f;
 
     private readonly RaycastHit2D[] groundHitCheckResults = new RaycastHit2D[10];
@@ -43,8 +44,6 @@ public class Player : MonoBehaviour
                 Rb = transform.AddComponent<Rigidbody2D>();
             }
         }
-
-        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -149,5 +148,5 @@ public class Player : MonoBehaviour
         _heldRb.transform.position = transform.position + Vector3.up * 1.5f;
     }
 
-    private bool IsGrounded() => col.Cast(Vector2.down, groundHitCheckResults, groundCheckDistance) > 0;
+    private bool IsGrounded() => groundCheckCollider.Cast(Vector2.down, groundHitCheckResults, groundCheckDistance) > 0;
 }
