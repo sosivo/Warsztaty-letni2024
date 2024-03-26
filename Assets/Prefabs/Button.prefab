@@ -218,7 +218,7 @@ MonoBehaviour:
   - {fileID: 0}
   _movingPartRb: {fileID: 5549736162823405611}
   _buttonCenter: {fileID: 6394299659669230986}
-  _requierdMass: 40
+  _requierdMass: 20
   _desactivatedOffset: 0.1
 --- !u!1 &8475582446246347578
 GameObject:
