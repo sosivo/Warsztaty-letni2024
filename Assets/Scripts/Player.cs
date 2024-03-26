@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     public Rigidbody2D Rb;
     private Rigidbody2D _heldRb;
 
-    private Collider2D col;
+    [SerializeField] private Collider2D groundCheckCollider;
     [SerializeField] private float groundCheckDistance = 0.1f;
 
     private readonly RaycastHit2D[] groundHitCheckResults = new RaycastHit2D[10];
 
-    [SerializeField] private float movementSpeed = 4f;
-    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private float movementForce = 10000f;
+    [SerializeField] private float jumpForce = 700f;
 
     [SerializeField] private float horizontalVelocityLimit = 5f;
     [SerializeField] private float horizontalDrag = 40f;
@@ -25,6 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float jumpBuffer = 0.2f;
     private bool hasJumped;
     private float lastJumpTime;
+
+    [SerializeField] private float airMovementMultiplier = 0.6f;
     
     // Start is called before the first frame update
     private void Start()
@@ -41,8 +44,6 @@ public class Player : MonoBehaviour
                 Rb = transform.AddComponent<Rigidbody2D>();
             }
         }
-
-        col = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -50,10 +51,24 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
             lastJumpTime = Time.time;
-            
+        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (_heldRb == null)
+                Interact();
+            else
+                DropItem();
+
+        }
+
+        // CameraMovement();
+    }
+
+    private void PerformMovement(bool isGrounded)
+    {
         if (CanJump())
         {
-            if (IsGrounded())
+            if (isGrounded)
             {
                 Rb.velocity = new Vector2(Rb.velocity.x, 0);
                 Rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -71,25 +86,22 @@ public class Player : MonoBehaviour
             _ => 1
         };
 
+        var finalMovementForce = isGrounded ? movementForce : movementForce * airMovementMultiplier;
+
         if (Input.GetKey(KeyCode.A))
-            Rb.AddForce(Vector2.left * movementSpeed, ForceMode2D.Force);
+            Rb.AddForce(Vector2.left * finalMovementForce, ForceMode2D.Force);
         if (Input.GetKey(KeyCode.D))
-            Rb.AddForce(Vector2.right * movementSpeed, ForceMode2D.Force);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (_heldRb == null)
-                Interact();
-            else
-                DropItem();
-
-        }
-
-        // CameraMovement();
+            Rb.AddForce(Vector2.right * finalMovementForce, ForceMode2D.Force);
     }
+
     private void FixedUpdate()
     {
-        Rb.velocity = new Vector2(Mathf.Clamp(Rb.velocity.x, -horizontalVelocityLimit, horizontalVelocityLimit) * horizontalDrag * Time.fixedDeltaTime,
+        bool isGrounded = IsGrounded();
+        PerformMovement(isGrounded);
+
+        var finalDrag = Mathf.Atan(Mathf.Clamp01((isGrounded ? horizontalDrag : horizontalDrag / airMovementMultiplier) * Time.fixedDeltaTime));
+        
+        Rb.velocity = new Vector2(Mathf.Clamp(Rb.velocity.x, -horizontalVelocityLimit, horizontalVelocityLimit) * finalDrag,
             Rb.velocity.y);
         
         HeldItemPhysics();
@@ -136,5 +148,5 @@ public class Player : MonoBehaviour
         _heldRb.transform.position = transform.position + Vector3.up * 1.5f;
     }
 
-    private bool IsGrounded() => col.Cast(Vector2.down, groundHitCheckResults, groundCheckDistance) > 0;
+    private bool IsGrounded() => groundCheckCollider.Cast(Vector2.down, groundHitCheckResults, groundCheckDistance) > 0;
 }
