@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
     {
         Rb.mass -= _heldRb.mass;
         _heldRb.simulated = true;
-        _heldRb.velocity = Vector3.zero;
+        _heldRb.velocity = Rb.velocity;
         _heldRb = null;
     }
 

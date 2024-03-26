@@ -10,13 +10,14 @@ public class MovingObject : ObjectInteractable
     float _acceleration = 10f;
     [SerializeField]
     Rigidbody2D _rb;
-    Vector2 _origin;
-    public Vector2 Destination;
+    Vector2 _origin,_destination;
+    public Vector2 DestinationDelta;
     bool _originFlag = true;
     // Start is called before the first frame update
     void Start()
     {
         _origin = transform.position;
+        _destination = transform.position + (Vector3)DestinationDelta;
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class MovingObject : ObjectInteractable
         }
         else
         {
-            desiredRelocation = (Destination - (Vector2)transform.position);
+            desiredRelocation = (_destination - (Vector2)transform.position);
         }
 
         if (desiredRelocation.magnitude > closeToZero)
@@ -64,14 +65,15 @@ public class MovingObject : ObjectInteractable
         }
         if (!Application.isPlaying)
         {
-            Gizmos.DrawLine(transform.position, Destination);
+            Gizmos.DrawLine(transform.position, transform.position + (Vector3)DestinationDelta);
             Gizmos.DrawWireCube(transform.position, boxSize);
+            Gizmos.DrawWireCube(transform.position + (Vector3)DestinationDelta, boxSize);
         }
         else
         {
-            Gizmos.DrawLine(_origin, Destination);
+            Gizmos.DrawLine(_origin, _destination);
             Gizmos.DrawWireCube(_origin, boxSize);
+            Gizmos.DrawWireCube(_destination, boxSize);
         }
-        Gizmos.DrawWireCube(Destination, boxSize);
     }
 }

@@ -95,7 +95,7 @@ MonoBehaviour:
   _moveSpeed: 1
   _acceleration: 10
   _rb: {fileID: 7219499297243357796}
-  Destination: {x: 0, y: 3.5}
+  DestinationDelta: {x: 6, y: -1}
 --- !u!50 &7219499297243357796
 Rigidbody2D:
   serializedVersion: 4
