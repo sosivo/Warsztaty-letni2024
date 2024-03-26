@@ -33,6 +33,11 @@ public class Button : MonoBehaviour
             TurnOff();
         if (!_turnedOn && Vector2.Dot((Vector2)_buttonCenter.up, toCenterVector) > 0f)
             TurnOn();
+        if(toCenterVector.magnitude > _desactivatedOffset*3f)
+        {
+            _movingPartRb.velocity = Vector2.zero;
+            _movingPartRb.transform.position = _movingPartRb.transform.position + (Vector3)toOffsetVector;
+        }
 
 
     }
