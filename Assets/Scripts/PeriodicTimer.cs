@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PeriodicTimer : MonoBehaviour
 {
@@ -56,16 +57,21 @@ public class PeriodicTimer : MonoBehaviour
     [field: SerializeField] public List<TimerConnection> Connections { get; private set; }
     [field: SerializeField] public float CycleTime { get; private set; } = 2f;
 
+    private Image timerIcon;
+
     private float lastCycleTime;
 
     private void Start()
     {
         ResetTimer();
+        timerIcon = GetComponentInChildren<Image>();
     }
 
     private void Update()
     {
         var timeInCycle = Time.time - lastCycleTime;
+
+        timerIcon.fillAmount = Mathf.Clamp01(timeInCycle / CycleTime);
 
         foreach (var connection in Connections)
         {
@@ -90,6 +96,9 @@ public class PeriodicTimer : MonoBehaviour
         
         foreach (var connection in Connections)
         {
+            if (connection.Interactable is null)
+                continue;
+            
             var interactablePos = connection.Interactable.transform.position;
             
             Gizmos.color = Color.cyan;

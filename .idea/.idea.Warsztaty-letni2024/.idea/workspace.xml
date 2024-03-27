@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="03b124fc-4f3c-4a54-8956-de7bf2d426f2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Warsztaty-letni2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Warsztaty-letni2024/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MonczakTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MonczakTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Button.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Button.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PeriodicTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PeriodicTimer.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +98,7 @@
       <option name="presentableId" value="Default" />
       <updated>1711399710042</updated>
       <workItem from="1711399713121" duration="6287000" />
-      <workItem from="1711549323879" duration="4135000" />
+      <workItem from="1711549323879" duration="4812000" />
     </task>
     <servers />
   </component>

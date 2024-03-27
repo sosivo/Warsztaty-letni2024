@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Button : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class Button : MonoBehaviour
     Rigidbody2D _movingPartRb;
     [SerializeField]
     Transform _buttonCenter;
-    [SerializeField]
-    float _requierdMass;
+    [FormerlySerializedAs("_requierdMass")] [SerializeField]
+    float _requiredMass;
     [SerializeField]
     float _desactivatedOffset;
     bool _turnedOn = false;
@@ -28,7 +29,7 @@ public class Button : MonoBehaviour
         Vector2 toCenterVector = (Vector2)(_buttonCenter.position - _movingPartRb.transform.position);
         Vector2 toOffsetVector = (Vector2)(_buttonCenter.position + (_desactivatedOffset *_buttonCenter.up) - _movingPartRb.transform.position);
         _movingPartRb.transform.position = _buttonCenter.position + Vector3.Dot(_buttonCenter.up, -toCenterVector) * _buttonCenter.up;
-        _movingPartRb.AddForce(toOffsetVector * _requierdMass * toOffsetVector.magnitude/_desactivatedOffset,ForceMode2D.Impulse);
+        _movingPartRb.AddForce(toOffsetVector * _requiredMass * toOffsetVector.magnitude/_desactivatedOffset,ForceMode2D.Impulse);
         if (_turnedOn && Vector2.Dot((Vector2)_buttonCenter.up, toCenterVector) < 0f)
             TurnOff();
         if (!_turnedOn && Vector2.Dot((Vector2)_buttonCenter.up, toCenterVector) > 0f)
