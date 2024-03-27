@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IKillable
 {
     public Rigidbody2D Rb;
     private Rigidbody2D _heldRb;
@@ -149,4 +149,9 @@ public class Player : MonoBehaviour
     }
 
     private bool IsGrounded() => groundCheckCollider.Cast(Vector2.down, groundHitCheckResults, groundCheckDistance) > 0;
+    
+    public void Kill()
+    {
+        GameManager.Instance.KillPlayer();
+    }
 }

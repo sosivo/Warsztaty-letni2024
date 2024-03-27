@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [field: SerializeField] public Transform TrackedObject { get; private set; }
+    [field: SerializeField] public Transform TrackedObject { get; set; }
     [field: SerializeField] public float CameraDynamic { get; private set; } = 4f;
 
     private float initialZ;
+    private Vector2 targetPosition;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,10 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.Lerp(transform.position, TrackedObject.position, Time.deltaTime * CameraDynamic);
+        if (TrackedObject is not null)
+            targetPosition = TrackedObject.transform.position;
+        
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * CameraDynamic);
         transform.position = new Vector3(transform.position.x, transform.position.y, initialZ);
     }
 }

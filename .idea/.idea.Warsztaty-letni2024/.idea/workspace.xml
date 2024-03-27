@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="03b124fc-4f3c-4a54-8956-de7bf2d426f2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Warsztaty-letni2024/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Warsztaty-letni2024/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-    </list>
+    <list default="true" id="03b124fc-4f3c-4a54-8956-de7bf2d426f2" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,15 +40,15 @@
   },
   "keyToStringList": {
     "rider.external.source.directories": [
-      "C:\\Users\\szymo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\szymo\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\szymo\\AppData\\Local\\Symbols\\src"
+      "/home/monczak/.config/JetBrains/Rider2023.3/resharper-host/DecompilerCache",
+      "/home/monczak/.config/JetBrains/Rider2023.3/resharper-host/SourcesCache",
+      "/home/monczak/.local/share/Symbols/src"
     ]
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.7f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/2022.3.7f1/Editor/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\Projects\Unity\Warsztaty-letni2024 -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Projects\Unity\Warsztaty-letni2024" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -59,7 +56,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.7f1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="$USER_HOME$/Unity/Hub/Editor/2022.3.7f1/Editor/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\Projects\Unity\Warsztaty-letni2024 -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\Projects\Unity\Warsztaty-letni2024" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -96,6 +93,7 @@
       <option name="presentableId" value="Default" />
       <updated>1711399710042</updated>
       <workItem from="1711399713121" duration="6287000" />
+      <workItem from="1711549323879" duration="1929000" />
     </task>
     <servers />
   </component>
