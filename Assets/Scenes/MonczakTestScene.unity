@@ -356,6 +356,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &283600115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6977304016658682209, guid: ffca253cd9124ea4a9837f99d4ac3b2a, type: 3}
+  m_PrefabInstance: {fileID: 1344474451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8604e9d5b1e7a641a34df1862dd7592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &285839379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8818858610074850173, guid: c07ceffb81483ea4aa331278316036e5, type: 3}
@@ -543,6 +554,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1017442929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1017442931}
+  - component: {fileID: 1017442930}
+  m_Layer: 0
+  m_Name: Periodic Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1017442930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017442929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fdf4c99da4b6c77b46971c91c0accf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Connections>k__BackingField:
+  - <Interactable>k__BackingField: {fileID: 283600115}
+    <InteractionMode>k__BackingField: 0
+    <PhaseShift>k__BackingField: 0
+  <CycleTime>k__BackingField: 2
+--- !u!4 &1017442931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017442929}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1344474451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -759,3 +819,4 @@ SceneRoots:
   - {fileID: 7893239522953113328}
   - {fileID: 331191995}
   - {fileID: 1344474451}
+  - {fileID: 1017442931}
