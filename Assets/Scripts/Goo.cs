@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Goo : MonoBehaviour
 {
-    [field: SerializeField] public List<string> AffectedTags { get; private set; }
     [field: SerializeField] public float SafetyMargin { get; private set; }
 
     private BoxCollider2D col;
@@ -27,9 +26,9 @@ public class Goo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (AffectedTags.Contains(other.gameObject.tag))
+        if (other.TryGetComponent<IKillable>(out var killable))
         {
-            other.GetComponent<IKillable>().Kill();
+            killable.Kill();
         }
     }
 }
